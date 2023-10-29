@@ -70,7 +70,7 @@ const checkPassword = () => {
     return valid;
 };
 
-const loginUser = async () => {
+const loginUserQuery = async () => {
     const isUsernameValid = checkUsername(),
         isPasswordValid = checkPassword();
 
@@ -98,4 +98,4 @@ const loginUser = async () => {
 
 }
 
-document.getElementById("loginBtn").onclick = loginUser;
+document.getElementById("loginBtn").onclick = loginUserQuery;
