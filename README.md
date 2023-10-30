@@ -24,7 +24,6 @@ $ apt-get install -y migrate
 ```
 migrate create -ext sql -dir db/migrations -seq create_users_table
 migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/chat_development?sslmode=disable" -verbose up
-migrate -path db/migrations -database "postgresql://postgres:mysecretpassword@localhost:5432/chat_app" -verbose up
 ```
 
 ### How to connect to Postgres and list the tables
@@ -74,4 +73,5 @@ chat_development=# \dt
 ## References
 
 * Migrations: https://github.com/golang-migrate/migrate
+* Postgres Migrations: https://medium.com/pengenpaham/postgres-database-migration-using-golang-migrate-docker-compose-and-makefile-159ef50670cf
 * How to Encrypt Passwords in Golang: https://www.alexedwards.net/blog/how-to-hash-and-verify-passwords-with-argon2-in-go
