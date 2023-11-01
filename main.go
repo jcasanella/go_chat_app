@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/jcasanella/chat_app/config"
 	password "github.com/jcasanella/chat_app/crypto"
 )
 
@@ -31,7 +33,16 @@ func loginHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, p)
 }
 
+var cf *config.ConfigValues
+
+func init() {
+	fmt.Println("Reading config file...")
+	cf = config.NewConfigValues()
+}
+
 func main() {
+	fmt.Printf("Postgres %s:%d/%s \n", cf.Host, cf.Port, cf.Database)
+
 	r := gin.Default()
 
 	r.Static("/css", "./assets/css")

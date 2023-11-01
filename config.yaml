@@ -1,0 +1,8 @@
+postgres:
+  address:
+    host: "localhost"
+    port: 5435
+  user:
+    username: "postgres"
+    password: "postgres"
+  database: "chat_development"
