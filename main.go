@@ -1,12 +1,14 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jcasanella/chat_app/config"
 	password "github.com/jcasanella/chat_app/crypto"
+	"github.com/jcasanella/chat_app/database"
 )
 
 func indexHandler(c *gin.Context) {
@@ -34,10 +36,12 @@ func loginHandler(c *gin.Context) {
 }
 
 var cf *config.ConfigValues
+var db *sql.DB
 
 func init() {
 	fmt.Println("Reading config file...")
 	cf = config.NewConfigValues()
+	db = database.GetConnection(cf)
 }
 
 func main() {
