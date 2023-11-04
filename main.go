@@ -41,7 +41,7 @@ var db *sql.DB
 func init() {
 	fmt.Println("Reading config file...")
 	cf = config.NewConfigValues()
-	db = database.GetConnection(cf)
+	database.CreateConnection(cf)
 }
 
 func main() {
