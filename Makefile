@@ -18,6 +18,10 @@ docker-up:
 docker-down:
 	docker-compose -f docker/docker-compose.yaml down
 
+.PHONY: docker-rm-volume
+docker-rm-volume: docker-down
+	docker volume rm docker_postgres_data
+
 # ==================================================================================== #
 # MIGRATIONS up - down
 # ==================================================================================== #
