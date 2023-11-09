@@ -1,14 +1,15 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jcasanella/chat_app/config"
-	password "github.com/jcasanella/chat_app/crypto"
 	"github.com/jcasanella/chat_app/database"
+	repository "github.com/jcasanella/chat_app/repository/user"
+	usecase "github.com/jcasanella/chat_app/usecase/user"
 )
 
 func indexHandler(c *gin.Context) {
@@ -27,16 +28,27 @@ func loginHandler(c *gin.Context) {
 		return
 	}
 
-	p, err := password.GeneratePassword(login.Password)
+	// Set Up Repository and UseCase
+	//timeoutContext := time.Duration(viper.GetInt("context.timeout")) * time.Second
+	timeoutContext := time.Duration(5) * time.Second
+	db := database.GetGORM()
+	ur := repository.NewDBUserRepository(db)
+	uc := usecase.NewUserUsecase(ur, timeoutContext)
+	u, err := uc.GetUser(c.Request.Context(), login.Username, login.Password)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, p)
+
+	// p, err := password.GeneratePassword(login.Password)
+	// if err != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	// 	return
+	// }
+	c.JSON(http.StatusOK, u)
 }
 
 var cf *config.ConfigValues
-var db *sql.DB
 
 func init() {
 	fmt.Println("Reading config file...")

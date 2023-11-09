@@ -12,6 +12,7 @@ import (
 )
 
 var db *sql.DB
+var orm *gorm.DB
 
 func CreateConnection(cf *config.ConfigValues) {
 	// Create Connection string
@@ -27,14 +28,14 @@ func CreateConnection(cf *config.ConfigValues) {
 	db.SetConnMaxIdleTime(5 * time.Minute) //  Max time a connection can be idle
 	db.SetConnMaxLifetime(5 * time.Minute) // Time before close and reopen again a connetion
 
-	orm, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
+	orm, err = gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	checkError(err)
 
 	db, err = orm.DB()
 	checkError(err)
 
 	// Close database
-	defer db.Close()
+	// defer db.Close()
 
 	// check db
 	err = db.Ping()
@@ -45,6 +46,10 @@ func CreateConnection(cf *config.ConfigValues) {
 
 func GetDb() *sql.DB {
 	return db
+}
+
+func GetGORM() *gorm.DB {
+	return orm
 }
 
 func checkError(err error) {

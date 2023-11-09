@@ -27,7 +27,7 @@ docker-rm-volume: docker-down
 # ==================================================================================== #
 
 .PHONY: migration-up
-migration-up:
+migration-up: docker-up
 	migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/chat_development?sslmode=disable" -verbose up
 
 .PHONY: migration-down
