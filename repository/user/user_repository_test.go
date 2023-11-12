@@ -7,34 +7,27 @@ import (
 
 	model "github.com/jcasanella/chat_app/model/user"
 	mocks "github.com/jcasanella/chat_app/model/user/mock"
+	usecase "github.com/jcasanella/chat_app/usecase/user"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGetUser(t *testing.T) {
 	mockRepos := mocks.UserRepository{}
-	mockRepos.On("GetUser", "test", "test").Return(&model.User{
+
+	userExp := model.User{
 		ID:        "MockId",
 		Name:      "test",
+		Username:  "test",
 		Password:  "test",
-		CreatedAt: nil,
-		UpdatedAt: nil,
-	}, nil)
-
-	db, mock, err := sqlmock.New()
-	if err != nil {
-		t.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		CreatedAt: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC),
+		UpdatedAt: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC),
 	}
 
-	rows := sqlmock.NewRows([]string{"id", "title", "content", "author_id", "updated_at", "created_at"}).
-		AddRow(1, "title 1", "Content 1", 1, time.Now(), time.Now())
+	mockRepos.On("GetUser", context.TODO(), "test", "test").Return(userExp, nil)
 
-	query := "SELECT id,title,content, author_id, updated_at, created_at FROM article WHERE ID = \\?"
+	userUsecase := usecase.NewUserUsecase(&mockRepos, 5*time.Second)
+	userAct, err := userUsecase.GetUser(context.TODO(), "test", "test")
 
-	mock.ExpectQuery(query).WillReturnRows(rows)
-	a := articleMysqlRepo.NewMysqlArticleRepository(db)
-
-	num := int64(5)
-	anArticle, err := a.GetByID(context.TODO(), num)
-	assert.NoError(t, err)
-	assert.NotNil(t, anArticle)
+	assert.NoError(t, err, "Error should be nil")
+	assert.Equal(t, userExp, userAct, "User should be valid")
 }
