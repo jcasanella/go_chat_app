@@ -9,6 +9,7 @@ import (
 	mocks "github.com/jcasanella/chat_app/model/user/mock"
 	usecase "github.com/jcasanella/chat_app/usecase/user"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
 )
 
 func TestGetUser(t *testing.T) {
@@ -23,7 +24,7 @@ func TestGetUser(t *testing.T) {
 		UpdatedAt: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC),
 	}
 
-	mockRepos.On("GetUser", context.TODO(), "test", "test").Return(userExp, nil)
+	mockRepos.On("GetUser", mock.Anything, "test", "test").Return(userExp, nil)
 
 	userUsecase := usecase.NewUserUsecase(&mockRepos, 5*time.Second)
 	userAct, err := userUsecase.GetUser(context.TODO(), "test", "test")
