@@ -2,7 +2,11 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -59,6 +63,21 @@ func init() {
 func main() {
 	fmt.Printf("Postgres %s:%d/%s \n", cf.Host, cf.Port, cf.Database)
 
+	// Prepare to capture SigInt
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+	go func() {
+		<-c
+		fmt.Println("Closing DB Connection...")
+		err := database.GetDb().Close()
+		if err != nil {
+			log.Fatal(err)
+			os.Exit(1)
+		}
+		os.Exit(0)
+	}()
+
+	// Starting gin
 	r := gin.Default()
 
 	r.Static("/css", "./assets/css")

@@ -1,4 +1,4 @@
-package repository
+package usecase
 
 import (
 	"context"
@@ -7,7 +7,6 @@ import (
 
 	model "github.com/jcasanella/chat_app/model/user"
 	mocks "github.com/jcasanella/chat_app/model/user/mock"
-	usecase "github.com/jcasanella/chat_app/usecase/user"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )
@@ -26,7 +25,7 @@ func TestGetUser(t *testing.T) {
 
 	mockRepos.On("GetUser", mock.Anything, "test", "test").Return(userExp, nil)
 
-	userUsecase := usecase.NewUserUsecase(&mockRepos, 5*time.Second)
+	userUsecase := NewUserUsecase(&mockRepos, 5*time.Second)
 	userAct, err := userUsecase.GetUser(context.TODO(), "test", "test")
 
 	assert.NoError(t, err, "Error should be nil")

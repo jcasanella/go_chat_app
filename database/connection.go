@@ -19,7 +19,8 @@ func CreateConnection(cf *config.ConfigValues) {
 	psqlconn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", cf.Host, cf.Port, cf.Username, cf.Password, cf.Database)
 
 	// open database
-	db, err := sql.Open("postgres", psqlconn)
+	var err error
+	db, err = sql.Open("postgres", psqlconn)
 	checkError(err)
 
 	// Reference: https://www.alexedwards.net/blog/configuring-sqldb
