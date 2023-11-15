@@ -85,7 +85,7 @@ const loginUserQuery = async () => {
             password: `${password}`
         };
 
-        const response = await fetch(`${URL}/login`, {
+        const response = await fetch(`${URL}/api/login`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json;charset=utf-8'
