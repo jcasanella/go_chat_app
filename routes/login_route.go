@@ -4,14 +4,14 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	model "github.com/jcasanella/chat_app/model/user"
+	usecase "github.com/jcasanella/chat_app/usecase/user"
 )
 
 type LoginRoute struct {
-	loginUseCase model.UserUsecase
+	loginUseCase usecase.UserHandler
 }
 
-func NewLoginRouteController(luc model.UserUsecase) *LoginRoute {
+func NewLoginRouteController(luc usecase.UserHandler) *LoginRoute {
 	return &LoginRoute{luc}
 }
 

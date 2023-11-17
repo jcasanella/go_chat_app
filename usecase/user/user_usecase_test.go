@@ -14,7 +14,7 @@ import (
 func TestGetUser(t *testing.T) {
 	mockRepos := mocks.UserRepository{}
 
-	userExp := model.User{
+	expectedUser := model.User{
 		ID:        "MockId",
 		Name:      "test",
 		Username:  "test",
@@ -23,11 +23,11 @@ func TestGetUser(t *testing.T) {
 		UpdatedAt: time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC),
 	}
 
-	mockRepos.On("GetUser", mock.Anything, "test", "test").Return(userExp, nil)
+	mockRepos.On("GetUser", mock.Anything, "test", "test").Return(expectedUser, nil)
 
-	userUsecase := NewUserUsecase(&mockRepos, 5*time.Second)
-	userAct, err := userUsecase.GetUser(context.TODO(), "test", "test")
+	userService := NewUserService(&mockRepos, 5*time.Second)
+	actualUser, err := userService.GetUser(context.TODO(), "test", "test")
 
 	assert.NoError(t, err, "Error should be nil")
-	assert.Equal(t, userExp, userAct, "User should be valid")
+	assert.Equal(t, expectedUser, actualUser, "User should be valid")
 }

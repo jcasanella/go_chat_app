@@ -31,9 +31,9 @@ func init() {
 	routeIndex = routes.NewIndexRoute()
 
 	// Login
-	ur := repository.NewDBUserRepository(db)
-	luc := usecase.NewUserUsecase(ur, timeoutContext)
-	routeLogin = routes.NewLoginRouteController(luc)
+	u := repository.NewDBUserRepository(db)
+	s := usecase.NewUserService(u, timeoutContext)
+	routeLogin = routes.NewLoginRouteController(s)
 }
 
 func main() {
