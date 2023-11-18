@@ -13,7 +13,7 @@ VALUES
         uuid_generate_v4 (),
         'test_user',
         'test',
-        'test',
+        'password',
         CURRENT_TIMESTAMP,
         CURRENT_TIMESTAMP
     );

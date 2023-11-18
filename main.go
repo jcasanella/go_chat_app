@@ -10,7 +10,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/jcasanella/chat_app/config"
-	"github.com/jcasanella/chat_app/database"
+	"github.com/jcasanella/chat_app/db"
 	repository "github.com/jcasanella/chat_app/repository/user"
 	routes "github.com/jcasanella/chat_app/routes"
 	usecase "github.com/jcasanella/chat_app/usecase/user"
@@ -22,10 +22,10 @@ var routeIndex *routes.IndexRoute
 func init() {
 	fmt.Println("Reading config file...")
 	cf := config.NewConfigValues()
-	database.CreateConnection(cf)
+	db.CreateConnection(cf)
 
 	timeoutContext := time.Duration(5) * time.Second
-	db := database.GetGORM()
+	db := db.GetGORM()
 
 	// Index
 	routeIndex = routes.NewIndexRoute()
@@ -43,7 +43,7 @@ func main() {
 	go func() {
 		<-c
 		fmt.Println("Closing DB Connection...")
-		err := database.GetDb().Close()
+		err := db.GetDb().Close()
 		if err != nil {
 			log.Fatal(err)
 			os.Exit(1)
