@@ -1,4 +1,4 @@
-package password
+package security
 
 import (
 	"crypto/rand"
