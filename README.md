@@ -75,3 +75,4 @@ chat_development=# \dt
 * Migrations: https://github.com/golang-migrate/migrate
 * Postgres Migrations: https://medium.com/pengenpaham/postgres-database-migration-using-golang-migrate-docker-compose-and-makefile-159ef50670cf
 * How to Encrypt Passwords in Golang: https://www.alexedwards.net/blog/how-to-hash-and-verify-passwords-with-argon2-in-go
+* JWT: https://github.com/golang-jwt/jwt
