@@ -75,4 +75,6 @@ chat_development=# \dt
 * Migrations: https://github.com/golang-migrate/migrate
 * Postgres Migrations: https://medium.com/pengenpaham/postgres-database-migration-using-golang-migrate-docker-compose-and-makefile-159ef50670cf
 * How to Encrypt Passwords in Golang: https://www.alexedwards.net/blog/how-to-hash-and-verify-passwords-with-argon2-in-go
-* JWT: https://github.com/golang-jwt/jwt
+* Golang-JWT: https://github.com/golang-jwt/jwt
+* JWT authentication in Golang with Gin: https://articles.wesionary.team/jwt-authentication-in-golang-with-gin-63dbc0816d55
+* Mocking in Golang using testify: https://blog.lamida.org/mocking-in-golang-using-testify/
