@@ -44,7 +44,7 @@ func (j *jwtServices) GenerateToken(username string, email string) (signed strin
 
 	// Create and sign token
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	signed, err = token.SignedString(j.secretKey)
+	signed, err = token.SignedString([]byte(j.secretKey))
 
 	return
 }

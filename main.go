@@ -13,11 +13,13 @@ import (
 	"github.com/jcasanella/chat_app/db"
 	repository "github.com/jcasanella/chat_app/repository/user"
 	routes "github.com/jcasanella/chat_app/routes"
+	"github.com/jcasanella/chat_app/security"
 	usecase "github.com/jcasanella/chat_app/usecase/user"
 )
 
 var routeLogin *routes.LoginRoute
 var routeIndex *routes.IndexRoute
+var authTest *routes.AuthRoute
 
 func init() {
 	fmt.Println("Reading config file...")
@@ -33,7 +35,11 @@ func init() {
 	// Login
 	u := repository.NewDBUserRepository(db)
 	s := usecase.NewUserService(u, timeoutContext)
-	routeLogin = routes.NewLoginRouteController(s)
+	jwt := security.NewJWTService()
+	routeLogin = routes.NewLoginRouteController(s, jwt)
+
+	// Auth
+	authTest = routes.NewAuthRouteController(jwt)
 }
 
 func main() {
@@ -65,6 +71,9 @@ func main() {
 	// Login
 	api := r.Group("/api")
 	routeLogin.LoginRoute(api)
+
+	// Auth
+	authTest.AuthRoute(api)
 
 	r.Run()
 }
