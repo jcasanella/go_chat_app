@@ -12,7 +12,7 @@ import (
 // Middleware
 func AuthorizeJWT(jwtService security.JWTService) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		const BEARER_SCHEMA = "Bearer"
+		const BEARER_SCHEMA = "Bearer "
 		authHeader := c.GetHeader("Authorization")
 		tokenString := authHeader[len(BEARER_SCHEMA):]
 		token, err := jwtService.ValidateToken(tokenString)
