@@ -63,6 +63,7 @@ func main() {
 	// Static resources
 	r.Static("/css", "./assets/css")
 	r.Static("/js", "./assets/js")
+	r.Static("/img", "./assets/img")
 	r.LoadHTMLFiles("views/index.html")
 
 	// Index

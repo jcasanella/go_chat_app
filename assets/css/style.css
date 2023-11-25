@@ -5,11 +5,7 @@
 }
 
 body {
-    background: lightyellow;
-    font: 18px Arial, sans-serif;
-}
-h1 {
-    color: orange;
+    margin: 0;
 }
 
 .form-field.error input {
@@ -23,4 +19,24 @@ h1 {
 
 .form-field small {
     color: var(--error-color);
+}
+
+#login-form {
+    margin: 100px;
+}
+
+.form-header {
+    width: 500px;
+    padding: 15px;
+    background-color: #dc3545;
+}
+
+.form-header h1 {
+    color:white;
+}
+
+.profile-small {
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid white;
 }
