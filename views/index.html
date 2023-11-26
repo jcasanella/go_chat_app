@@ -6,30 +6,34 @@
         <meta charset="utf-8">
         <title>Chat App</title>
         <link rel="stylesheet" href="/css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100&family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@100&family=Quicksand:wght@300&family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
     </head>
     <body>
         <main>
             <h1>Chat App</h1>
-            <div id="login-form">
-                <form>
-                    <div class="form-header">
-                        <img src="/img/avatar.png" class="profile-small">
-                        <h1>Login</h1>
-                    </div>
-                    <div class="form-field">
-                        <label for="username">Username: </label>
-                        <input type="text" id="username" autocomplete="off">
-                        <small></small>
-                    </div>
-                    <div class="form-field">
-                        <label for="password">Password: </label>
-                        <input type="password" id="password" autocomplete="off">
-                        <small></small>
-                    </div>
-                    <div class="form-field">
-                        <button type="button" id="loginBtn">Login</button>
-                    </div>
-                </form>
+            <div class="container">
+                <div id="login-form">
+                    <form>
+                        <div class="form-header">
+                            <img src="/img/avatar.png" class="profile-small">
+                            <h1>Login</h1>
+                        </div>
+                        <div class="form-field">
+                            <label for="username">Username: </label>
+                            <input type="text" id="username" autocomplete="off">
+                            <small></small>
+                        </div>
+                        <div class="form-field">
+                            <label for="password">Password: </label>
+                            <input type="password" id="password" autocomplete="off">
+                            <small></small>
+                        </div>
+                        <div class="form-field">
+                            <button type="button" id="loginBtn">Login</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </main>
         <script src="/js/script.js"></script>

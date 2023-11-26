@@ -6,6 +6,13 @@
 
 body {
     margin: 0;
+    font-family: "Public Sans", Verdana, sans-serif;
+    font-size: 18px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Quicksand", sans-serif;
+    font-weight: 600;
 }
 
 .form-field.error input {
@@ -19,6 +26,10 @@ body {
 
 .form-field small {
     color: var(--error-color);
+}
+
+.container {
+    display: grid;
 }
 
 #login-form {
