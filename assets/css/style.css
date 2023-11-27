@@ -4,10 +4,18 @@
     /* --warning-color: #ffc107; */
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
-    margin: 0;
+    display:flex;
+    margin: 50px auto;
     font-family: "Public Sans", Verdana, sans-serif;
     font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    background-color:lightgray;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -29,25 +37,54 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-    display: grid;
+    margin: 100px;
 }
 
 #login-form {
-    margin: 100px;
+    display: grid;
+    padding: 15px;
+    grid-template-columns: 400px 400px;
+}
+
+#login-sign-in {
+    background-color: white;
+}
+
+#login-sign-up {
+    background: rgb(226,58,58);
+    background: linear-gradient(90deg, rgba(226,58,58,1) 47%, rgba(107,59,40,1) 100%);
+    color:white;
 }
 
 .form-header {
     width: 500px;
     padding: 15px;
-    background-color: #dc3545;
+}
+
+.form-footer {
+    padding: 15px;
 }
 
 .form-header h1 {
-    color:white;
+    color:black;
+}
+
+.form-field {
+    padding: 10px;
 }
 
 .profile-small {
     height: 100px;
     border-radius: 50%;
     border: 5px solid white;
+}
+
+.form-footer button {
+    border-radius:10px;
+    border:none;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+    background: rgb(226,58,58);
+    padding: 7px;
+    color:white;
+    width: 80px;
 }
