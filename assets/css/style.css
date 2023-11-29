@@ -21,8 +21,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Quicksand", sans-serif;
-    font-weight: 600;
+    font-family: sans-serif;
+    font-weight: 900;
 }
 
 .form-field.error input {
@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
 #login-form {
     display: grid;
     padding: 15px;
-    grid-template-columns: 400px 400px;
+    grid-template-columns: 350px 350px;
 }
 
 #login-sign-in {
@@ -59,12 +59,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-header {
-    width: 500px;
+    width: 350px;
+    padding: 15px;
+}
+
+.form-header-signup {
+    width: 400px;
     padding: 15px;
 }
 
 .form-footer {
     padding: 15px;
+    text-align: center;
 }
 
 .form-header h1 {
@@ -73,6 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-field {
     padding: 10px;
+    text-align: center;
 }
 
 .form-field input[type=text] {
@@ -103,4 +110,34 @@ h1, h2, h3, h4, h5, h6 {
     color:white;
     width: 160px;
     font-weight: 600;
+    cursor: pointer;
+}
+
+.form-field-signup {
+    padding: 10px;
+}
+
+.form-footer-signup {
+    padding: 15px;
+    text-align: center;
+}
+
+.form-field-signup {
+    margin-left: 10px;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.form-footer-signup button {
+    border-radius:30px;
+    border: 2px solid white;
+    background-color: transparent;
+    padding: 1em;
+    color:white;
+    width: 160px;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
 }
