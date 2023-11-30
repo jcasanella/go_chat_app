@@ -70,7 +70,8 @@ const checkPassword = () => {
     return valid;
 };
 
-const loginUserQuery = async () => {
+// Login call and validation
+const signInFnc = async () => {
     const isUsernameValid = checkUsername(),
         isPasswordValid = checkPassword();
 
@@ -96,6 +97,13 @@ const loginUserQuery = async () => {
         console.log(`Resp: ${resp}`);
     }
 
+};
+
+document.getElementById("signInBtn").onclick = signInFnc;
+
+// Starting signUp process
+const signUpFnc = () => {
+    console.log('Not implemented yet!!!')
 }
 
-document.getElementById("loginBtn").onclick = loginUserQuery;
+document.getElementById("signUpBtn").onclick = signUpFnc;
