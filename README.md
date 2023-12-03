@@ -22,8 +22,8 @@ $ apt-get install -y migrate
 ### Create a migration file
 
 ```
-migrate create -ext sql -dir db/migrations -seq create_users_table
-migrate -path db/migrations -database "postgres://postgres:postgres@localhost:5435/chat_development?sslmode=disable" -verbose up
+migrate create -ext sql -dir migrations -seq create_users_table
+migrate -path migrations -database "postgres://postgres:postgres@localhost:5435/chat_development?sslmode=disable" -verbose up
 ```
 
 ### How to connect to Postgres and list the tables

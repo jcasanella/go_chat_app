@@ -1,3 +1,5 @@
+import { HttpError } from "./errors.js";
+
 const URL = 'http://localhost:8080';
 
 const isRequired = value => value === '' ? false : true;
@@ -86,15 +88,26 @@ const signInFnc = async () => {
             password: `${password}`
         };
 
-        const response = await fetch(`${URL}/api/login`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify(user)
-          });
-        const resp = await response.json();
-        console.log(`Resp: ${resp}`);
+
+        try {
+            const response = await fetch(`${URL}/api/login`, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(user)
+            });
+
+            if (!response.ok) {
+                throw new HttpError(response.status, 'Error fetching data');
+            }
+            const resp = await response.json();
+            console.log(`Resp: ${resp.token}`);
+        } catch(err) {
+            if (err instanceof HttpError) {
+                alert(`User invalid!!!`);
+            }
+        }
     }
 
 };

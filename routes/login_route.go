@@ -34,6 +34,7 @@ func (lrc *LoginRoute) loginHandler(c *gin.Context) {
 		return
 	}
 
+	// TODO - change to structured LOG
 	fmt.Printf("Generating token!!!")
 	var token string
 	token, err = lrc.jwtService.GenerateToken(u.Username, u.Password)
