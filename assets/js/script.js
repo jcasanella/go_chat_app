@@ -104,8 +104,10 @@ const signInFnc = async () => {
             const resp = await response.json();
             console.log(`Resp: ${resp.token}`);
         } catch(err) {
-            var modal = document.getElementById("modalDialog");
-            var span = document.getElementsByClassName("close")[0];
+            let modal = document.getElementById("modalDialog");
+            let span = document.getElementsByClassName("close")[0];
+            let errorBtn = document.getElementById("errorBtn");
+
 
             // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
@@ -117,6 +119,11 @@ const signInFnc = async () => {
                 if (event.target == modal) {
                     modal.style.display = "none";
                 }
+            }
+
+            // When the user clicks on errorBtn, close the modal
+            errorBtn.onclick = function() {
+                modal.style.display = "none";
             }
 
             if (err instanceof HttpError) {
