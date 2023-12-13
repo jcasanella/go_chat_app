@@ -103,6 +103,15 @@ const signInFnc = async () => {
             }
             const resp = await response.json();
             console.log(`Resp: ${resp.token}`);
+
+            // hide login
+            let containerLogin = document.getElementById("container-login");
+            containerLogin.style.display = "none";
+
+            // show main app
+            let containerMain = document.getElementById("main-container");
+            containerMain.style.display = "block";
+
         } catch(err) {
             let modal = document.getElementById("modalDialog");
             let span = document.getElementsByClassName("close")[0];
