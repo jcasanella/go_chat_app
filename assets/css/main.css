@@ -25,4 +25,36 @@ footer > h4 {
 
 #flex-container {
     display: flex;
+    margin: 10px;
+    height: 65%;
+}
+
+article {
+    flex: 3;
+    background: rgb(226,58,58);
+    padding: 10px;
+    border-radius: 15px;
+}
+
+aside {
+    flex: 1;
+    background: rgb(226,58,58);
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 15px;
+
+}
+
+.conversations {
+    background: hsl(69, 35%, 84%);
+    height: 100%;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.users {
+    background: hsl(69, 35%, 84%);
+    height: 100%;
+    padding: 10px;
+    border-radius: 15px;
 }
