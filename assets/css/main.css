@@ -6,3 +6,23 @@
     width: 100%;
     height: 100%
 }
+
+header, footer {
+    height: 100px;
+    margin: 10px;
+    background: rgb(226,58,58);
+    background: linear-gradient(90deg, rgba(226,58,58,1) 47%, rgba(107,59,40,1) 100%);
+}
+
+header > h1 {
+    color:white;
+}
+
+footer > h4 {
+    color: white;
+    text-align: right;
+}
+
+#flex-container {
+    display: flex;
+}

@@ -103,6 +103,7 @@ const signInFnc = async () => {
             }
             const resp = await response.json();
             console.log(`Resp: ${resp.token}`);
+            sessionStorage.setItem("token", `${resp.token}`);
 
             // hide login
             let containerLogin = document.getElementById("container-login");
@@ -151,3 +152,25 @@ const signUpFnc = () => {
 }
 
 document.getElementById("signUpBtn").onclick = signUpFnc;
+
+window.onload  = function() {
+    let token = sessionStorage.getItem("token");
+    if (!token || token === '') { // Init
+        alert(`${token}`);
+        // show login
+        let containerLogin = document.getElementById("container-login");
+        containerLogin.style.display = "block";
+
+        // hide main app
+        let containerMain = document.getElementById("main-container");
+        containerMain.style.display = "none";
+    } else {    // We have token - dont ask login again
+        // hide login
+        let containerLogin = document.getElementById("container-login");
+        containerLogin.style.display = "none";
+
+        // show main app
+        let containerMain = document.getElementById("main-container");
+        containerMain.style.display = "block";
+    }
+}
