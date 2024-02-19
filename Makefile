@@ -3,6 +3,7 @@ BIN_NAME := chatApp
 BIN_FOLDER := bin
 TMP_FOLDER := tmp
 
+pre: docker-up migration-up
 all: clean test build copy/config run
 
 

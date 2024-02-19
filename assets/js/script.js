@@ -156,7 +156,6 @@ document.getElementById("signUpBtn").onclick = signUpFnc;
 window.onload  = function() {
     let token = sessionStorage.getItem("token");
     if (!token || token === '') { // Init
-        alert(`${token}`);
         // show login
         let containerLogin = document.getElementById("container-login");
         containerLogin.style.display = "block";
