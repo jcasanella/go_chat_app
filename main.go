@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gorilla/websocket"
 	"github.com/jcasanella/chat_app/config"
 	"github.com/jcasanella/chat_app/db"
 	repository "github.com/jcasanella/chat_app/repository/user"
@@ -20,6 +21,7 @@ import (
 var routeLogin *routes.LoginRoute
 var routeIndex *routes.IndexRoute
 var authTest *routes.AuthRoute
+var routeChat *routes.ChatRoute
 
 func init() {
 	fmt.Println("Reading config file...")
@@ -40,6 +42,13 @@ func init() {
 
 	// Auth
 	authTest = routes.NewAuthRouteController(jwt)
+
+	// Chat
+	wu := websocket.Upgrader{
+		ReadBufferSize:  1024,
+		WriteBufferSize: 1024,
+	}
+	routeChat = routes.NewChatRouteController(wu)
 }
 
 func main() {
@@ -75,6 +84,9 @@ func main() {
 
 	// Auth
 	authTest.AuthRoute(api)
+
+	// Chat App
+	routeChat.ChatRoute(api)
 
 	r.Run()
 }

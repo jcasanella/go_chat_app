@@ -37,7 +37,7 @@ const showSuccess = (input) => {
 }
 
 const usernameEl = document.querySelector('#username');
-const checkUsername = () => {
+const isUsernameValid = () => {
     let valid = false;
     const min = 3,
         max = 25;
@@ -55,7 +55,7 @@ const checkUsername = () => {
 }
 
 const passwordEl = document.querySelector('#password');
-const checkPassword = () => {
+const isPasswordValid = () => {
     let valid = false;
 
     const password = passwordEl.value.trim();
@@ -74,50 +74,27 @@ const checkPassword = () => {
 
 // Login call and validation
 const signInFnc = async () => {
-    const isUsernameValid = checkUsername(),
-        isPasswordValid = checkPassword();
-
-    const isFormValid = isUsernameValid && isPasswordValid;
+    // Validation username and password
+    const isFormValid = isUsernameValid() && isPasswordValid();
     if (isFormValid) {
-
-        const userName = usernameEl.value;
-        const password = passwordEl.value;
-
-        const user = {
-            username: `${userName}`,
-            password: `${password}`
-        };
-
-
         try {
-            const response = await fetch(`${URL}/api/login`, {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify(user)
-            });
+            // api login
+            const user = {
+                username: `${usernameEl.value}`,
+                password: `${passwordEl.value}`
+            };
 
-            if (!response.ok) {
-                throw new HttpError(response.status, 'Error fetching data');
-            }
-            const resp = await response.json();
-            console.log(`Resp: ${resp.token}`);
-            sessionStorage.setItem("token", `${resp.token}`);
-
+            loginUserApi(user);
+            
             // hide login
-            let containerLogin = document.getElementById("container-login");
-            containerLogin.style.display = "none";
+            elementDisplay('container-login', 'none');
 
             // show main app
-            let containerMain = document.getElementById("main-container");
-            containerMain.style.display = "block";
-
+            elementDisplay('main-container', 'block');
         } catch(err) {
             let modal = document.getElementById("modalDialog");
             let span = document.getElementsByClassName("close")[0];
             let errorBtn = document.getElementById("errorBtn");
-
 
             // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
@@ -141,7 +118,6 @@ const signInFnc = async () => {
             }
         }
     }
-
 };
 
 document.getElementById("signInBtn").onclick = signInFnc;
@@ -153,23 +129,55 @@ const signUpFnc = () => {
 
 document.getElementById("signUpBtn").onclick = signUpFnc;
 
-window.onload  = function() {
+window.onload = function() {
     let token = sessionStorage.getItem("token");
     if (!token || token === '') { // Init
         // show login
-        let containerLogin = document.getElementById("container-login");
-        containerLogin.style.display = "block";
+        elementDisplay('container-login', 'block');
 
         // hide main app
-        let containerMain = document.getElementById("main-container");
-        containerMain.style.display = "none";
+        elementDisplay('main-container', 'none');
     } else {    // We have token - dont ask login again
         // hide login
-        let containerLogin = document.getElementById("container-login");
-        containerLogin.style.display = "none";
+        elementDisplay('container-login', 'none');
 
         // show main app
-        let containerMain = document.getElementById("main-container");
-        containerMain.style.display = "block";
+        elementDisplay('main-container', 'block');
+    }
+}
+
+/**  
+ * Call API login user and get token
+ * @param {user} username and password
+ * @throws {HttpError} when can not fetch the data
+ */
+const loginUserApi = async (user) => {
+    const response = await fetch(`${URL}/api/login`, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(user)
+    });
+
+    if (!response.ok) {
+        throw new HttpError(response.status, 'Error fetching data');
+    }
+    const resp = await response.json();
+    console.log(`Resp: ${resp.token}`);
+    sessionStorage.setItem("token", `${resp.token}`);
+}
+
+/**
+ * Select an Html element and change his display style
+ * @param {string} elementId 
+ * @param {string} display 
+ */
+const elementDisplay = (elementId, display) => {
+    let element = document.getElementById(elementId);
+    if (element) {
+        element.style.display = display;
+    } else {
+        console.log(`Element with id ${elementId} not found`);
     }
 }
