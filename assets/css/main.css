@@ -121,6 +121,7 @@ img {
 
 .chats {
     padding: 30px 15px 0 25px;
+    background-color: #404040;
 }
 
 /* Styling the message page */
@@ -235,7 +236,7 @@ received-chats-img {
 
 /* Styling the msg-sent time  */
 .time {
-    color: #777;
+    color: white;
     display: block;
     font-size: 12px;
     margin: 8px 0 0;

@@ -2,6 +2,7 @@ package routes
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
@@ -31,10 +32,26 @@ func (cr *ChatRoute) chatHandler(c *gin.Context) {
 		}
 
 		// Print msg to the console
-		fmt.Printf("%s sent: %s\n", conn.RemoteAddr(), string(msg))
+		fmt.Printf("%s received: %s\n", conn.RemoteAddr(), msg)
+
+		// Test send conversation from Client
+		now := time.Now()
+		msgResponse := fmt.Sprintf(`<div class="outgoing-chats">
+			<div class="outgoing-chats-img">
+				<img src="/img/avatar.png">
+			</div>
+			<div class="outgoing-msg">
+				<div class="outgoing-chats-msg">
+					<p class="multi-msg">Hi this is the Response from Server.</p>
+					<span class="time">%s</span>
+				</div>
+			</div>
+		</div>`, now.Format("15:04 | Jan 2 Mon, 2006"))
+		// Print msg to the console
+		fmt.Printf("%s sent: %s\n", conn.RemoteAddr(), msgResponse)
 
 		// Write msg back to the browser
-		if err = conn.WriteMessage(msgType, msg); err != nil {
+		if err = conn.WriteMessage(msgType, []byte(msgResponse)); err != nil {
 			return
 		}
 	}

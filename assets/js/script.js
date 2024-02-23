@@ -11,6 +11,8 @@ const isPasswordSecure = (password) => {
     return re.test(password);
 };
 
+let socket = null;
+
 const showError = (input, message) => {
     // get the form-field element
     const formField = input.parentElement;
@@ -84,7 +86,10 @@ const signInFnc = async () => {
                 password: `${passwordEl.value}`
             };
 
-            loginUserApi(user);
+            await loginUserApi(user);
+
+            // create webSocket connection
+            chatConnectionApi();
             
             // hide login
             elementDisplay('container-login', 'none');
@@ -180,4 +185,34 @@ const elementDisplay = (elementId, display) => {
     } else {
         console.log(`Element with id ${elementId} not found`);
     }
+}
+
+const chatConnectionApi = () => {
+    if (!socket) {
+        socket = new WebSocket("ws://localhost:8080/api/chat");
+    }
+
+    socket.onopen = function(e) {
+        console.log("[open] Connection established");
+        console.log("Sending to server");
+        socket.send("My name is John");
+    };
+
+    socket.onmessage = function(event) {
+        console.log(`[message] Data received from server: ${event.data}`);
+    };
+
+    socket.onclose = function(event) {
+        if (event.wasClean) {
+            console.log(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+        } else {
+            // e.g. server process killed or network down
+            // event.code is usually 1006 in this case
+            alert('[close] Connection died');
+        }
+    };
+      
+    socket.onerror = function(error) {
+        alert(`[error]`);
+    };
 }
