@@ -20,7 +20,7 @@ import (
 
 var routeLogin *routes.LoginRoute
 var routeIndex *routes.IndexRoute
-var authTest *routes.AuthRoute
+
 var routeChat *routes.ChatRoute
 
 func init() {
@@ -40,15 +40,12 @@ func init() {
 	jwt := security.NewJWTService()
 	routeLogin = routes.NewLoginRouteController(s, jwt)
 
-	// Auth
-	authTest = routes.NewAuthRouteController(jwt)
-
-	// Chat
+	// Chat & jwt validation
 	wu := websocket.Upgrader{
 		ReadBufferSize:  1024,
 		WriteBufferSize: 1024,
 	}
-	routeChat = routes.NewChatRouteController(wu)
+	routeChat = routes.NewChatRouteController(wu, jwt)
 }
 
 func main() {
@@ -81,9 +78,6 @@ func main() {
 	// Login
 	api := r.Group("/api")
 	routeLogin.LoginRoute(api)
-
-	// Auth
-	authTest.AuthRoute(api)
 
 	// Chat App
 	routeChat.ChatRoute(api)

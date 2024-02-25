@@ -189,12 +189,15 @@ const elementDisplay = (elementId, display) => {
 
 const chatConnectionApi = () => {
     if (!socket) {
-        socket = new WebSocket("ws://localhost:8080/api/chat");
+        const token = sessionStorage.getItem('token');
+        socket = new WebSocket(`ws://localhost:8080/api/chat?token=${token}`);
     }
 
     socket.onopen = function(e) {
+        console.group();
         console.log("[open] Connection established");
         console.log("Sending to server");
+        console.groupEnd();
         socket.send("My name is John");
     };
 

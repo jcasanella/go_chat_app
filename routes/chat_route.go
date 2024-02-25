@@ -6,14 +6,17 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
+	"github.com/jcasanella/chat_app/middleware"
+	"github.com/jcasanella/chat_app/security"
 )
 
 type ChatRoute struct {
-	upgrader websocket.Upgrader
+	upgrader   websocket.Upgrader
+	jwtService security.JWTService
 }
 
-func NewChatRouteController(u websocket.Upgrader) *ChatRoute {
-	return &ChatRoute{u}
+func NewChatRouteController(u websocket.Upgrader, jwt security.JWTService) *ChatRoute {
+	return &ChatRoute{u, jwt}
 }
 
 func (cr *ChatRoute) chatHandler(c *gin.Context) {
@@ -58,5 +61,5 @@ func (cr *ChatRoute) chatHandler(c *gin.Context) {
 }
 
 func (cr *ChatRoute) ChatRoute(rg *gin.RouterGroup) {
-	rg.GET("/chat", cr.chatHandler)
+	rg.GET("/chat", middleware.AuthorizeJWT(cr.jwtService), cr.chatHandler)
 }
