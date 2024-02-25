@@ -42,29 +42,16 @@ footer {
 article {
     flex: 3;
     background: rgb(226,58,58);
-    padding: 10px;
+    padding: 5px;
 }
 
 aside {
     flex: 1;
     background: rgb(226,58,58);
-    padding: 10px;
+    padding: 5px;
     margin-left: 0.3em;
+    width: 25%;
 }
-
-/* .conversations {
-    background: hsl(69, 35%, 84%);
-    height: 100%;
-    padding: 10px;
-    border-radius: 15px;
-}
-
-.users {
-    background: hsl(69, 35%, 84%);
-    height: 100%;
-    padding: 10px;
-    border-radius: 15px;
-} */
 
 img {
     width: 35px;
@@ -76,22 +63,22 @@ img {
 .msg-header {
     border: 1px solid #ccc;
     width: 100%;
-    height: 10%;
+    height: 8%;
     border-bottom: none;
     display: inline-block;
     background-color: #efefef;
     margin: 0;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-radius: 20px;
 }
 
 .msgimg {
     margin-left: 2%;
+    margin-top: 3%;
     float: left;
 }
 
 .container1 {
-    width: 270px;
+    /* width: 270px; */
     height: auto; 
     float: left;
     margin: 0;
@@ -99,17 +86,18 @@ img {
 
 /* styling user-name */
 .active {
-    width: 150px;
+    /* width: 150px; */
     float: left;
     color: black;
     font-weight: bold;
     margin: 0 0 0 5px;
-    height: 10%;
+    height: 8%;
 }
 
 /* Styling the chat box container */
 .chat-page {
     padding: 0 0 50px 0;
+    height: 100%;
 }
 
 .msg-inbox {
@@ -117,11 +105,13 @@ img {
     overflow: hidden;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    height: 100%;
 }
 
 .chats {
     padding: 30px 15px 0 25px;
     background-color: #404040;
+    height: 100%;
 }
 
 /* Styling the message page */
@@ -260,9 +250,9 @@ received-chats-img {
     box-shadow: rgb(0 0 0 / 25%) 0px 2px 5px 2px;
 }
 .outgoing-chats-msg {
-        float: right;
-        width: 46%;
-    }
+    float: right;
+    width: 46%;
+}
 
 /* Styling the avatar */
 .outgoing-chats-img {
