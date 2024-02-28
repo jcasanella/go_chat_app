@@ -40,17 +40,16 @@ footer {
 }
 
 article {
-    flex: 3;
+    flex: 10;
     background: rgb(226,58,58);
     padding: 5px;
 }
 
 aside {
-    flex: 1;
+    flex: 2;
     background: rgb(226,58,58);
     padding: 5px;
     margin-left: 0.3em;
-    width: 25%;
 }
 
 img {
@@ -59,11 +58,12 @@ img {
     border-style: none;
     border-radius: 100%;
 }
+
 /* Styling the msg-header container */
 .msg-header {
     border: 1px solid #ccc;
     width: 100%;
-    height: 8%;
+    /* height: 7%; */
     border-bottom: none;
     display: inline-block;
     background-color: #efefef;
@@ -77,16 +77,16 @@ img {
     float: left;
 }
 
-.container1 {
+/* .container1 {
     width: 270px;
     height: auto; 
     float: left;
     margin: 0;
-}
+} */
 
 /* styling user-name */
 .active {
-    width: 150px;
+    /* width: 150px; */
     float: left;
     color: black;
     font-weight: bold;
@@ -194,7 +194,7 @@ input:focus {
 }
 
 /* Styling the avatar  */
-received-chats-img {
+.received-chats-img {
     display: inline-block;
     width: 50px;
     float: left;
@@ -205,6 +205,7 @@ received-chats-img {
     padding: 0 0 0 10px;
     vertical-align: top;
     width: 92%;
+    margin-left: -2em;
 }
 .received-msg-inbox {
     width: 57%;
@@ -220,7 +221,8 @@ received-chats-img {
     width: 100%;
     box-shadow: rgb(0 0 0 / 25%) 0px 5px 5px 2px;
 }
-    p {
+
+p {
     overflow-wrap: break-word;
 }
 
