@@ -77,12 +77,10 @@ img {
     float: left;
 }
 
-/* .container1 {
-    width: 270px;
-    height: auto; 
-    float: left;
-    margin: 0;
-} */
+.users {
+    overflow-y: auto;
+    height: 100%;
+}
 
 /* styling user-name */
 .active {
@@ -92,19 +90,18 @@ img {
     font-weight: bold;
     margin: 0 0 0 5px;
     height: 8%;
+    font-size: 0.9rem;
 }
 
 /* Styling the chat box container */
 .chat-page {
-    padding: 0 0 50px 0;
     height: 100%;
 }
 
 .msg-inbox {
     border: 1px solid #ccc;
     overflow: hidden;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-radius: 20px;
     height: 100%;
 }
 
@@ -195,7 +192,7 @@ input:focus {
 
 /* Styling the avatar  */
 .received-chats-img {
-    display: inline-block;
+    /* display: inline-block; */
     width: 50px;
     float: left;
 }
@@ -258,8 +255,7 @@ p {
 
 /* Styling the avatar */
 .outgoing-chats-img {
-    display: inline-block;
+    /* display: inline-block; */
     width: 50px;
     float: right;
-    margin-right: 1rem;
 }
